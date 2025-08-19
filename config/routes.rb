@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "portfolios/index"
+  get "portfolios/show"
+  get "portfolios/new"
+  get "portfolios/create"
+  get "portfolios/edit"
+  get "portfolios/update"
+  get "portfolios/destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Rutas de autenticación

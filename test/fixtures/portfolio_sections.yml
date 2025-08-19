@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  portfolio: one
+  section_type: MyString
+  title: MyString
+  content: MyText
+  position: 1
+  settings: MyText
+
+two:
+  portfolio: two
+  section_type: MyString
+  title: MyString
+  content: MyText
+  position: 1
+  settings: MyText

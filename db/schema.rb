@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_19_040742) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_19_053256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "portfolio_sections", force: :cascade do |t|
+    t.bigint "portfolio_id", null: false
+    t.string "section_type", null: false
+    t.string "title"
+    t.text "content"
+    t.integer "position", default: 0
+    t.text "settings"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portfolio_id", "position"], name: "index_portfolio_sections_on_portfolio_id_and_position"
+    t.index ["portfolio_id"], name: "index_portfolio_sections_on_portfolio_id"
+    t.index ["section_type"], name: "index_portfolio_sections_on_section_type"
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "slug", null: false
+    t.text "description"
+    t.string "template", default: "default"
+    t.boolean "is_public", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_portfolios_on_slug", unique: true
+    t.index ["user_id", "is_public"], name: "index_portfolios_on_user_id_and_is_public"
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -22,4 +50,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_040742) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
+
+  add_foreign_key "portfolio_sections", "portfolios"
+  add_foreign_key "portfolios", "users"
 end
