@@ -41,6 +41,9 @@
           <!-- Navigation Links -->
           <div class="hidden md:flex space-x-4">
             <% if logged_in? %>
+              <%= link_to user_portfolios_path(current_user), class: "text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200" do %>
+                <i class="fas fa-briefcase mr-1"></i>Mis Portfolios
+              <% end %>
               <%= link_to current_user, class: "text-white hover:bg-white hover:bg-opacity-20 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200" do %>
                 <i class="fas fa-user mr-1"></i>Mi Perfil
               <% end %>
@@ -72,6 +75,9 @@
         <div class="md:hidden hidden" id="mobile-menu">
           <div class="px-2 pt-2 pb-3 space-y-1 border-t border-white border-opacity-20">
             <% if logged_in? %>
+              <%= link_to user_portfolios_path(current_user), class: "text-white hover:bg-white hover:bg-opacity-20 block px-3 py-2 rounded-md text-sm font-medium" do %>
+                <i class="fas fa-briefcase mr-1"></i>Mis Portfolios
+              <% end %>
               <%= link_to current_user, class: "text-white hover:bg-white hover:bg-opacity-20 block px-3 py-2 rounded-md text-sm font-medium" do %>
                 <i class="fas fa-user mr-1"></i>Mi Perfil
               <% end %>
