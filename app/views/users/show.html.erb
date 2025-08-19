@@ -1,0 +1,57 @@
+<% content_for :title, "Perfil de #{@user.name}" %>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">
+          <i class="fas fa-user-circle me-2"></i>
+          Perfil de Usuario
+        </h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <div class="profile-avatar mb-3">
+              <i class="fas fa-user-circle fa-5x text-primary"></i>
+            </div>
+            <% if logged_in? && current_user == @user %>
+              <%= link_to "Editar Perfil", edit_user_path(@user), class: "btn btn-outline-primary" %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <h4 class="mb-3"><%= @user.name %></h4>
+            
+            <div class="info-item mb-3">
+              <strong>Email:</strong>
+              <span class="text-muted"><%= @user.email %></span>
+            </div>
+            
+            <div class="info-item mb-3">
+              <strong>Miembro desde:</strong>
+              <span class="text-muted"><%= @user.created_at.strftime("%d de %B de %Y") %></span>
+            </div>
+            
+            <div class="info-item mb-3">
+              <strong>Última actualización:</strong>
+              <span class="text-muted"><%= @user.updated_at.strftime("%d de %B de %Y") %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Sección para futuros proyectos -->
+    <div class="card mt-4">
+      <div class="card-header">
+        <h4 class="mb-0">Proyectos</h4>
+      </div>
+      <div class="card-body">
+        <p class="text-muted">Los proyectos se mostrarán aquí próximamente...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

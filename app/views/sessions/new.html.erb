@@ -1,0 +1,114 @@
+<% content_for :title, "Iniciar Sesión" %>
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div class="mx-auto h-20 w-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-6">
+        <i class="fas fa-sign-in-alt text-white text-2xl"></i>
+      </div>
+      <h2 class="text-3xl font-extrabold text-gray-900">
+        Bienvenido de nuevo
+      </h2>
+      <p class="mt-2 text-sm text-gray-600">
+        Inicia sesión en tu cuenta para continuar
+      </p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+      <div class="px-8 py-8">
+        <%= form_with(scope: :session, url: login_path, local: true, class: "space-y-6") do |f| %>
+          
+          <!-- Email Field -->
+          <div>
+            <%= f.label :email, "Correo electrónico", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-envelope text-gray-400"></i>
+              </div>
+              <%= f.email_field :email, 
+                    class: "block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200",
+                    placeholder: "tu@email.com",
+                    autofocus: true %>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div>
+            <%= f.label :password, "Contraseña", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-lock text-gray-400"></i>
+              </div>
+              <%= f.password_field :password, 
+                    class: "block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 focus:border-purple-500 transition-colors duration-200",
+                    placeholder: "Tu contraseña" %>
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input type="checkbox" id="remember_me" name="remember_me" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+              <label for="remember_me" class="ml-2 block text-sm text-gray-700">
+                Recordarme
+              </label>
+            </div>
+            <div class="text-sm">
+              <a href="#" class="font-medium text-purple-600 hover:text-purple-500 transition-colors duration-200">
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <%= f.submit "Iniciar sesión", 
+                  class: "group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105 shadow-lg" %>
+          </div>
+        <% end %>
+      </div>
+      
+      <!-- Footer -->
+      <div class="px-8 py-4 bg-gray-50 border-t border-gray-200">
+        <div class="text-center">
+          <span class="text-sm text-gray-600">¿No tienes cuenta?</span>
+          <%= link_to signup_path, class: "ml-1 text-sm font-medium text-purple-600 hover:text-purple-500 transition-colors duration-200" do %>
+            Regístrate aquí
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Social Login (Future Feature) -->
+    <div class="text-center">
+      <div class="relative">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-gray-300"></div>
+        </div>
+        <div class="relative flex justify-center text-sm">
+          <span class="px-2 bg-gradient-to-br from-purple-50 to-blue-100 text-gray-500">
+            O continúa con
+          </span>
+        </div>
+      </div>
+      
+      <div class="mt-6 grid grid-cols-2 gap-3">
+        <button class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-200">
+          <i class="fab fa-google text-red-500 mr-2"></i>
+          Google
+        </button>
+        <button class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors duration-200">
+          <i class="fab fa-github text-gray-700 mr-2"></i>
+          GitHub
+        </button>
+      </div>
+      
+      <p class="mt-4 text-xs text-gray-500">
+        <i class="fas fa-shield-alt mr-1"></i>
+        Conexión segura con cifrado SSL
+      </p>
+    </div>
+  </div>
+</div>

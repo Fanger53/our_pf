@@ -1,0 +1,128 @@
+<% content_for :title, "Registrarse" %>
+
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div class="mx-auto h-20 w-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-6">
+        <i class="fas fa-user-plus text-white text-2xl"></i>
+      </div>
+      <h2 class="text-3xl font-extrabold text-gray-900">
+        Crear tu cuenta
+      </h2>
+      <p class="mt-2 text-sm text-gray-600">
+        Únete a nuestra comunidad de desarrolladores
+      </p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+      <div class="px-8 py-8">
+        <%= form_with(model: @user, local: true, class: "space-y-6") do |f| %>
+          <!-- Error Messages -->
+          <% if @user.errors.any? %>
+            <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-exclamation-circle text-red-400"></i>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-red-800">
+                    <%= pluralize(@user.errors.count, "error") %> impidieron guardar este usuario:
+                  </h3>
+                  <div class="mt-2 text-sm text-red-700">
+                    <ul class="list-disc pl-5 space-y-1">
+                      <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- Name Field -->
+          <div>
+            <%= f.label :name, "Nombre completo", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-user text-gray-400"></i>
+              </div>
+              <%= f.text_field :name, 
+                    class: "block w-full pl-10 pr-3 py-3 border #{@user.errors[:name].any? ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'} placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200",
+                    placeholder: "Tu nombre completo" %>
+            </div>
+          </div>
+
+          <!-- Email Field -->
+          <div>
+            <%= f.label :email, "Correo electrónico", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-envelope text-gray-400"></i>
+              </div>
+              <%= f.email_field :email, 
+                    class: "block w-full pl-10 pr-3 py-3 border #{@user.errors[:email].any? ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'} placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200",
+                    placeholder: "tu@email.com" %>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div>
+            <%= f.label :password, "Contraseña", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-lock text-gray-400"></i>
+              </div>
+              <%= f.password_field :password, 
+                    class: "block w-full pl-10 pr-3 py-3 border #{@user.errors[:password].any? ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'} placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200",
+                    placeholder: "Mínimo 6 caracteres" %>
+            </div>
+            <p class="mt-1 text-xs text-gray-500">
+              <i class="fas fa-info-circle mr-1"></i>
+              La contraseña debe tener al menos 6 caracteres
+            </p>
+          </div>
+
+          <!-- Password Confirmation Field -->
+          <div>
+            <%= f.label :password_confirmation, "Confirmar contraseña", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-lock text-gray-400"></i>
+              </div>
+              <%= f.password_field :password_confirmation, 
+                    class: "block w-full pl-10 pr-3 py-3 border #{@user.errors[:password_confirmation].any? ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'} placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200",
+                    placeholder: "Repite tu contraseña" %>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <%= f.submit "Crear cuenta", 
+                  class: "group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg" %>
+          </div>
+        <% end %>
+      </div>
+      
+      <!-- Footer -->
+      <div class="px-8 py-4 bg-gray-50 border-t border-gray-200">
+        <div class="text-center">
+          <span class="text-sm text-gray-600">¿Ya tienes cuenta?</span>
+          <%= link_to login_path, class: "ml-1 text-sm font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200" do %>
+            Inicia sesión aquí
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Security Notice -->
+    <div class="text-center">
+      <p class="text-xs text-gray-500">
+        <i class="fas fa-shield-alt mr-1"></i>
+        Tus datos están protegidos con cifrado de nivel empresarial
+      </p>
+    </div>
+  </div>
+</div>

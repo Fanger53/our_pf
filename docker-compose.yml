@@ -23,13 +23,23 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
+      - bundle_cache:/usr/local/bundle
     depends_on:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgresql://rails_user:rails_password@db:5432/our_pf
+      DATABASE_URL: postgresql://rails_user:rails@db:5432/our_pf
+      RAILS_ENV: development
+      BUNDLE_PATH: /usr/local/bundle
     stdin_open: true
     tty: true
+    command: >
+      bash -c "
+        bundle install &&
+        bundle exec rails db:create db:migrate &&
+        bundle exec rails server -b 0.0.0.0
+      "
 
 volumes:
   postgres_data:
+  bundle_cache:
