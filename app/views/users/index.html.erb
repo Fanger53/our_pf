@@ -124,3 +124,31 @@
     </div>
   </div>
 <% end %>
+
+<!-- React Component Demo Section -->
+<div class="mt-20">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Demostración de React + Stimulus</h2>
+    <p class="text-gray-600 max-w-2xl mx-auto">
+      Este es un ejemplo de componente React integrado con Stimulus en nuestra aplicación Rails
+    </p>
+  </div>
+  
+  <!-- React Counter Component -->
+  <div data-controller="react-component" 
+       data-react-component-component-value="Counter" 
+       data-react-component-props-value='{"initialValue": 5, "title": "Contador Interactivo"}'>
+    <div data-react-component-target="container"></div>
+  </div>
+  
+  <!-- Explanation -->
+  <div class="mt-8 max-w-3xl mx-auto bg-blue-50 rounded-xl p-6">
+    <h3 class="text-lg font-semibold text-blue-900 mb-3">¿Cómo funciona esta integración?</h3>
+    <div class="text-blue-800 space-y-2 text-sm">
+      <p><strong>1. Stimulus Controller:</strong> El atributo <code class="bg-blue-200 px-1 rounded">data-controller="react-component"</code> conecta el elemento con nuestro controlador de Stimulus.</p>
+      <p><strong>2. Componente React:</strong> Especificamos qué componente cargar con <code class="bg-blue-200 px-1 rounded">data-react-component-component-value="Counter"</code></p>
+      <p><strong>3. Props:</strong> Pasamos propiedades al componente usando <code class="bg-blue-200 px-1 rounded">data-react-component-props-value</code></p>
+      <p><strong>4. Renderizado:</strong> El controlador de Stimulus gestiona el ciclo de vida del componente React automáticamente.</p>
+    </div>
+  </div>
+</div>
